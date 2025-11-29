@@ -48,6 +48,12 @@ interface ValuationStateContextType {
     savedDeals: { id: string; name: string; date: string }[];
     saveDeal: (name: string) => void;
     loadDeal: (id: string) => void;
+
+    // Gut Check
+    gutCheckModifier: number;
+    setGutCheckModifier: (val: number) => void;
+    gutCheckAnalysis: string | null;
+    setGutCheckAnalysis: (val: string | null) => void;
 }
 
 const ValuationStateContext = createContext<ValuationStateContextType | undefined>(undefined);
@@ -139,6 +145,10 @@ export function ValuationProvider({ children }: { children: ReactNode }) {
     const [costToDuplicateValuation, setCostToDuplicateValuation] = useState(0);
 
 
+    // --- Gut Check State ---
+    const [gutCheckModifier, setGutCheckModifier] = useState(0);
+    const [gutCheckAnalysis, setGutCheckAnalysis] = useState<string | null>(null);
+
     // --- Save & Load Logic ---
     const [savedDeals, setSavedDeals] = useState<{ id: string; name: string; date: string }[]>([]);
 
@@ -197,7 +207,9 @@ export function ValuationProvider({ children }: { children: ReactNode }) {
             vcInputs, setVCInputs, vcValuation,
             riskFactorValuation, setRiskFactorValuation,
             costToDuplicateValuation, setCostToDuplicateValuation,
-            savedDeals, saveDeal, loadDeal
+            savedDeals, saveDeal, loadDeal,
+            gutCheckModifier, setGutCheckModifier,
+            gutCheckAnalysis, setGutCheckAnalysis
         }}>
             {children}
         </ValuationStateContext.Provider>

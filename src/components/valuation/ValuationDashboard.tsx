@@ -3,12 +3,13 @@
 
 import React, { useState } from 'react';
 import { clsx } from 'clsx';
-import { LayoutDashboard, Calculator, TrendingUp, ShieldAlert, DollarSign, Layers, Globe, Briefcase, Printer } from 'lucide-react';
+import { LayoutDashboard, Calculator, TrendingUp, ShieldAlert, DollarSign, Layers, Globe, Briefcase, Printer, BrainCircuit } from 'lucide-react';
 import BerkusSection from './BerkusSection';
 import ScorecardSection from './ScorecardSection';
 import RiskFactorSection from './RiskFactorSection';
 import VCMethodSection from './VCMethodSection';
 import CostToDuplicateSection from './CostToDuplicateSection';
+import GutCheckSection from './GutCheckSection';
 import TriangulationChart from './TriangulationChart';
 import PrintView from './PrintView';
 import { Sector, Region } from '@/lib/valuation/valuationUtils';
@@ -21,6 +22,7 @@ const TABS = [
     { id: 'risk', label: 'Risk Factor', icon: ShieldAlert },
     { id: 'vc', label: 'VC Method', icon: TrendingUp },
     { id: 'cost', label: 'Cost Base', icon: DollarSign },
+    { id: 'gut', label: 'Gut Check', icon: BrainCircuit },
     { id: 'summary', label: 'Triangulation', icon: Layers },
 ] as const;
 
@@ -187,6 +189,7 @@ function DashboardContent() {
                             {activeTab === 'cost' && (
                                 <CostToDuplicateSection onValuationChange={setCostToDuplicateValuation} />
                             )}
+                            {activeTab === 'gut' && <GutCheckSection />}
                             {activeTab === 'summary' && (
                                 <TriangulationChart valuations={valuations} />
                             )}
